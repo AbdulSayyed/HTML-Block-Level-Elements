@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Arrays</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap-responsive.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css"/>
+    <style>
+    body {
+      background: url('assets/img/textured_paper.png') repeat top left;
+      background-color: #f6f6f6;
+    }
+    </style>
+  </head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3"><ul class="nav nav-list">
+    <li class="sidebar-header-2"><a href="#arrays">Arrays</a></li>
+    <li class="sidebar-header-2"><a href="#type-of-arrays-in-javascript">Type of Arrays in JavaScript</a></li>
+    <li class="sidebar-header-3"><a href="#javascript-arrays-are-objects">JavaScript Arrays are objects</a></li>
+    <li class="sidebar-header-3"><a href="#creating-an-array-in-javascript">Creating an Array in JavaScript</a></li>
+    <li class="sidebar-header-4"><a href="#creating-an-array-object-using-array-literal">Creating an array object using Array literal</a></li>
+    <li class="sidebar-header-4"><a href="#creating-an-array-object-using-array-constructor">Creating an Array object using Array constructor</a></li>
+    <li class="sidebar-header-3"><a href="#common-mistakes-declaring-an-array-syntax-using-the-array-identifier-">Common Mistakes declaring an array syntax using the array identifier.</a></li>
+    <li class="sidebar-header-3"><a href="#sparse-array">Sparse Array</a></li>
+    <li class="sidebar-header-3"><a href="#accessing-array-elements">Accessing Array elements</a></li>
+    <li class="sidebar-header-3"><a href="#populating-an-array">Populating an Array</a></li>
+    <li class="sidebar-header-4"><a href="#reading-and-writing-at-the-same-time">Reading and Writing at the same time</a></li>
+    <li class="sidebar-header-3"><a href="#array-length-property">Array &#x60;length&#x60; property</a></li>
+    <li class="sidebar-header-4"><a href="#shortening-the-array">Shortening the array</a></li>
+    <li class="sidebar-header-3"><a href="#setting-the-size-of-an-array-explicitly">Setting the size of an Array explicitly</a></li>
+    <li class="sidebar-header-3"><a href="#creating-dense-array-with-the-specified-size-using-built-in-function-">Creating dense array with the specified size using built in function.</a></li>
+    <li class="sidebar-header-3"><a href="#different-ways-of-finding-the-key-property-in-object">Different ways of finding the key/property in object</a></li>
+    <li class="sidebar-header-3"><a href="#1-using-in-and-operator-with-arrays">1. Using &#x60;in&#x60; and  operator with Arrays</a></li>
+    <li class="sidebar-header-3"><a href="#2-accessing-it-with-object">2. Accessing it with object</a></li>
+    <li class="sidebar-header-3"><a href="#iterating-arrays">Iterating Arrays</a></li>
+    <li class="sidebar-header-4"><a href="#looking-for-a-particular-property">Looking for a particular property</a></li>
+    <li class="sidebar-header-2"><a href="#purpose-of-array">Purpose of Array</a></li>
+    <li class="sidebar-header-3"><a href="#foreach-array-prototype-foreach-callback-thisarg-">forEach() [ Array.prototype.forEach(callback,thisArg)]</a></li>
+    <li class="sidebar-header-3"><a href="#map-array-prototype-map-">map() [ Array.prototype.map()]</a></li>
+    <li class="sidebar-header-4"><a href="#when-to-use-map-function">When to use map() function</a></li>
+    <li class="sidebar-header-4"><a href="#important-functions-in-array">Important functions in Array</a></li>
+    <li class="sidebar-header-4"><a href="#separating-evens-from-odds">Separating evens from odds</a></li>
+    <li class="sidebar-header-2"><a href="#built-in-array-class-methods-">Built-in Array Class methods.</a></li>
+    <li class="sidebar-header-3"><a href="#filter-array-prototype-filter-">filter() [ Array.prototype.filter()]</a></li>
+    <li class="sidebar-header-4"><a href="#use-of-reduce-">Use of reduce()</a></li>
+    <li class="sidebar-header-3"><a href="#finding-out-the-frequency-of-value-being-repeated-in-an-array-and-mapped-it-with-the-value-">Finding out the frequency of value being repeated in an array and mapped it with the value.</a></li>
+    <li class="sidebar-header-3"><a href="#chaining-methods">Chaining methods</a></li>
+</ul>
+      </div>
+      <div class="span9 main"><p>+++
+date = &quot;2016-11-26&quot;
+draft = false
+title = &quot;JavaScript Arrays&quot;
+categories = [&quot;js&quot;]
+description = &quot; &quot;
+slugs = &quot; &quot;
++++</p>
+<h2 id="arrays"><a class="header-link" href="#arrays"></a>Arrays</h2>
+<p>Array is a topic of data structure and deals with collecting of data known as data collection. Data can be homogeneous or heterogeneous, arrays usually deal with homogeneous items. The item in an array or a component (element stored) in an array is accessed by its position using index. Thus there is one-to-one relationship between each index and its component. Take an example of student marks achieved in five subjects <code>var result = [70,69,83,93,73]</code>. Marks are stored in an array which is referenced by the identifier <code>result.</code> Thus the relationship b/w its index and value can be shown as below.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> result = [<span class="hljs-number">70</span>,<span class="hljs-number">69</span>,<span class="hljs-number">83</span>,<span class="hljs-number">93</span>,<span class="hljs-number">73</span>]
+    result[<span class="hljs-number">0</span>]---------------&gt;<span class="hljs-number">70</span>, result[<span class="hljs-number">0</span>]------&gt;ABF12C(<span class="hljs-number">70</span>)
+    result[<span class="hljs-number">1</span>]---------------&gt;<span class="hljs-number">69</span>,
+    ..........................
+    result[<span class="hljs-number">4</span>]---------------&gt;<span class="hljs-number">73</span></code></pre><p>Arrays index always start with zero ( 0 ). In above figure the <code>result[0]</code> points to the address in memory <code>ABF12C</code> which holds the value <code>70</code>. When the space for the array is reserved in memory it may be a contiguous space or may not.  The size of the array, may grow or may not depends upon the language being used. For example when programming started with procedural languages, they only support static arrays that is the programmer must establish the size of the array. If the array needs to  grow it can not be extended. It was programmer responsibility to take care of the expanding or contracting arrays by tracking the index position. There was nothing wrong with it and the same logic still used  deep down which has been hidden from the programmer so that attention can be paid in solving problems in hand on high level.</p>
+<h2 id="type-of-arrays-in-javascript"><a class="header-link" href="#type-of-arrays-in-javascript"></a>Type of Arrays in JavaScript</h2>
+<p>JavaScript provides support for dynamic arrays and can store different types of elements. It supports</p>
+<ul class="list">
+<li><em>Homogeneous Arrays</em>:<ul class="list">
+<li>Arrays of String   <code>var arr = [&quot;Physics&quot;, &quot;Chemistry&quot;, &quot;Mathematics&quot;]</code></li>
+<li>Arrays of Numbers  <code>var arr = [20,49,100,45]</code></li>
+<li>Arrays of boolean  <code>var arr = [true,false,true,true]</code></li>
+<li>Arrays of function <code>var arr = [function f1(){},function f2(){}]</code></li>
+<li>Arrays of objects  <code>var arr = [{x:1,y:2},new Object{},myObject}</code></li>
+<li>Arrays with gaps   <code>var arr = [ ,&quot;words&quot;, ,&quot;another word&quot;, ,]</code></li>
+<li>Arrays can have expression <code>var arr = [200,1.1+2.3, a = new Object()]</code></li>
+<li>Arrays with trailing comma <code>var arr = [1,2, ]</code>//only 2 items not three</li>
+</ul>
+</li>
+<li><em>Heterogeneous Arrays</em>:<ul class="list">
+<li>Arrays of mixed type <code>var arr = [&quot;Physics&quot;,49,true,null,1.23]</code></li>
+<li>Arrays of mixed type <code>var arr =[function(x,y){return x+y;},{a:10,b:20}]</code></li>
+</ul>
+</li>
+<li><em>Multidimensional Arrays</em>:<ul class="list">
+<li>They are arrays of array, can be two dimensional or multidimensional and commonly used in mathematics <code>var arr = [[&quot;A&quot;,200],[&quot;B&quot;,230],[&quot;C&quot;,0]]</code></li>
+<li>A multidimensional Array does not have to have a uniform set of data stored in it . It is free to store any length and any type within it as shown below</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code>         <span class="hljs-keyword">var</span> arr = [ [ <span class="hljs-string">"A"</span>, <span class="hljs-number">200</span>],
+                     [ <span class="hljs-string">"B"</span>, <span class="hljs-number">400</span>,<span class="hljs-literal">true</span>],
+                     [ <span class="hljs-literal">null</span>,<span class="hljs-string">"Physics"</span>,<span class="hljs-string">"undefined"</span>,NAN],
+                     [<span class="hljs-string">"It is all true folks"</span>],
+                   ];</code></pre><p>The above example of multidimensional array is known as mixed array or <em>jagged Array</em>.</p>
+<blockquote>
+<p>Note:Another point to note is that arrays in JavaScript can be <em>sparse arrays</em>. It exactly means what the word sparse refers to that they are not equally distributed. What it means that it can have holes in it.</p>
+</blockquote>
+<h3 id="javascript-arrays-are-objects"><a class="header-link" href="#javascript-arrays-are-objects"></a>JavaScript Arrays are objects</h3>
+<p>JavaScript provides many built in constructors to create singleton objects. One of those constructor is of <code>Array</code> object. It provides both ways of creating arrays using a constructor with new operator or an array literal. An Array object has its own prototype which gets available to be used whenever you create an <code>Array</code> object. This prototype provides built in services for manipulating arrays related tasks which makes life much simpler and make JavaScript more functional Programming Language. Thus when you create even an empty  object <code>var arr = []</code> it has all the services available to it by default.</p>
+<h3 id="creating-an-array-in-javascript"><a class="header-link" href="#creating-an-array-in-javascript"></a>Creating an Array in JavaScript</h3>
+<p>JavaScript provides three ways of creating an Array object.</p>
+<ol class="list">
+<li>Using an Array literal <code>[]</code></li>
+<li>Using an Array Constructor with <code>new</code> operator</li>
+<li>Writing your own Array Constructor</li>
+</ol>
+<h4 id="creating-an-array-object-using-array-literal"><a class="header-link" href="#creating-an-array-object-using-array-literal"></a>Creating an array object using Array literal</h4>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = [];        <span class="hljs-comment">// An empty array object</span>
+    <span class="hljs-built_in">console</span>.log(arr);    <span class="hljs-comment">// []</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">0</span>]);    <span class="hljs-comment">//undefined</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.getPrototypeOf(arr)); <span class="hljs-comment">// []--&gt;Array.prototype</span>
+    <span class="hljs-built_in">console</span>.log(arr.constructor);    <span class="hljs-comment">//[Function: Array]</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> arr); <span class="hljs-comment">// object</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.getPrototypeOf(<span class="hljs-built_in">Array</span>.prototype));<span class="hljs-comment">//{}--&gt;Object.prototype</span>
+    <span class="hljs-built_in">console</span>.log({}.constructor);    <span class="hljs-comment">//[Function: Object]</span></code></pre><p>The above code tells us that the Array object <code>arr</code> is created from a prototype <code>[]--&gt;Array.prototype</code> using Array literal notation <code>[]</code>. The constructor used in creation of this Array object is <code>Array()</code>. In other words it is same as using an Array constructor thus can be taken as a short cut of creating an Array object.</p>
+<p>The prototype of <code>Array.prototype</code> is itself an <code>{}</code> object which is created from Object constructor. Thus this simple line figure will explain the whole story.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = [] or <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>()
+      <span class="hljs-string">`arr ----&gt; Array ------&gt; Object`</span></code></pre><p>From the code above we can say that  the identifier <code>arr</code> is an  object of  type Array which is constructed using an <code>Array</code> constructor which in turn is also a type of Object which is constructed using an <code>Object</code> constructor.</p>
+<p>The point to understand this relation is to accept that the object created above gets to use services freely as of its own because of the prototype inheritance.</p>
+<h4 id="creating-an-array-object-using-array-constructor"><a class="header-link" href="#creating-an-array-object-using-array-constructor"></a>Creating an Array object using Array constructor</h4>
+<p>There is no difference of creating an object with object literal or using its constructor with new operator. However, it is worth knowing the format to create the Array object using its constructor.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();    <span class="hljs-comment">// same as []</span>
+    <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>);    <span class="hljs-comment">//    same as [2,3,4]</span>
+    <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-string">"It is String"</span>);    <span class="hljs-comment">//same as ["it is String"]</span>
+    <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">2</span>);        <span class="hljs-comment">// **it is not same as [2]**</span></code></pre><p>When creating an Array object using Array constructor, the constructor arguments becomes the elements of the new array. However at least two or more values need to be defined for arrays values. <em>Only one numeric value is considered to be its length</em>. Though a non numeric value is allowed. The following code shows the difference.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">4</span>);<span class="hljs-comment">// an array is created with length 4,</span>
+    <span class="hljs-built_in">console</span>.log(arr1);    <span class="hljs-comment">//[ , , ,  ]</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"arr1 length is "</span> + arr1.length);    <span class="hljs-comment">// 4</span>
+    <span class="hljs-built_in">console</span>.log(arr1[<span class="hljs-number">0</span>]);        <span class="hljs-comment">// undefined</span>
+    <span class="hljs-keyword">var</span> arr2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);    <span class="hljs-comment">// an array is created with length 2</span>
+    <span class="hljs-built_in">console</span>.log(arr2);    <span class="hljs-comment">// [ 2, 3]</span>
+    <span class="hljs-built_in">console</span>.log(arr2.length);    <span class="hljs-comment">//2</span>
+    <span class="hljs-built_in">console</span>.log(arr2[<span class="hljs-number">0</span>] + <span class="hljs-string">" , "</span> + arr2[<span class="hljs-number">1</span>] + <span class="hljs-string">" , "</span> + arr2[<span class="hljs-number">2</span>]);<span class="hljs-comment">//2,3,undefined</span>
+    <span class="hljs-keyword">var</span> arr3 = [<span class="hljs-number">2</span>];        <span class="hljs-comment">// an array is created with length 1 with value 2</span>
+    <span class="hljs-built_in">console</span>.log(arr3);    <span class="hljs-comment">// [ 2 ]</span>
+    <span class="hljs-built_in">console</span>.log(arr3.length);    <span class="hljs-comment">//1</span>
+    <span class="hljs-built_in">console</span>.log(arr3[<span class="hljs-number">0</span>]);    <span class="hljs-comment">// 2;</span>
+    <span class="hljs-keyword">var</span> arr4 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-string">"A"</span>);<span class="hljs-comment">// an array is created with length 1, value is A</span>
+    <span class="hljs-built_in">console</span>.log(arr4);    <span class="hljs-comment">// [ 'A' ]</span>
+    <span class="hljs-built_in">console</span>.log(arr4.length);    <span class="hljs-comment">//1</span>
+    <span class="hljs-built_in">console</span>.log(arr4[<span class="hljs-number">0</span>]);    <span class="hljs-comment">// A</span></code></pre><h3 id="common-mistakes-declaring-an-array-syntax-using-the-array-identifier-"><a class="header-link" href="#common-mistakes-declaring-an-array-syntax-using-the-array-identifier-"></a>Common Mistakes declaring an array syntax using the array identifier.</h3>
+<p>When declaring an array, it is common to use the practice allowed in other languages. For example following ways are flagged as syntax errors</p>
+<pre class="hljs"><code>     <span class="hljs-comment">/* C style declaration of array not allowed in JS */</span>
+     <span class="hljs-keyword">var</span> arr[]; <span class="hljs-comment">// error</span>
+     <span class="hljs-keyword">var</span> arr[<span class="hljs-number">10</span>];<span class="hljs-comment">//error</span>
+     <span class="hljs-keyword">var</span> arr[] = [];<span class="hljs-comment">//error</span>
+     <span class="hljs-keyword">var</span> arr[<span class="hljs-number">2</span>] = [<span class="hljs-number">10</span>,<span class="hljs-number">8</span>]; <span class="hljs-comment">// error</span>
+
+     <span class="hljs-comment">/* The correct way is to keep the nature of the Array in mind. it is a type of object thus need to be created either using constructor function or its short cut which is using an array literal [] */</span>
+     <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+     <span class="hljs-keyword">var</span> arr = [];
+     <span class="hljs-comment">// once it is created, use it.</span>
+     <span class="hljs-keyword">var</span> arr[<span class="hljs-number">0</span>] = <span class="hljs-number">10</span>; <span class="hljs-comment">// o.k</span></code></pre><p>When an array object is created and shown using <code>console.log()</code> function as shown below. The array identifier represent the Array object and shown as it is <code>[&quot;a&quot;,&quot;b&quot;]</code> with array literal containing two different elements of array. But when this identifier is used with concatenated operator <code>+</code> it first changes the array object to primitive data type string thus [&quot;a&quot;,&quot;b&quot;] will be first changed to &quot;a,b&quot; then further concatenation will be applied as shown below. The whole operation is not performed on the array object. The array object remains the same</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = [<span class="hljs-string">"a"</span>,<span class="hljs-string">"b"</span>];
+    <span class="hljs-built_in">console</span>.log(arr); <span class="hljs-comment">// ['a','b']</span>
+    <span class="hljs-built_in">console</span>.log(arr + <span class="hljs-string">""</span>); <span class="hljs-comment">// a,b</span>
+    <span class="hljs-built_in">console</span>.log(arr + <span class="hljs-string">",c"</span>);<span class="hljs-comment">//a,b,c</span>
+    <span class="hljs-built_in">console</span>.log(arr);<span class="hljs-comment">// ['a','b']</span></code></pre><h3 id="sparse-array"><a class="header-link" href="#sparse-array"></a>Sparse Array</h3>
+<p>The very first example above <code>var arr1 = new Array(4);</code> creates an array <code>[ , , , ]</code> of length 4 with no elements. Similarly the code <code>var myArry = []; myArray[4] = 4;</code> would create an array of length 5 with the last element value set to 4 <code>[ , , , ,4]</code>. Both arrays have hole in them or you may call it empty spaces. We will be dealing with this situation after few topics.</p>
+<h3 id="accessing-array-elements"><a class="header-link" href="#accessing-array-elements"></a>Accessing Array elements</h3>
+<p>Whether reading or writing the array elements, same method is used. An Array literal provides this facility with the help of index number that always start with zero. It works as an operator taking array&#39;s identifier on its left and a non negative integer value within it. This value can be an expression evaluating to a non negative integer. Thus <code>var arr[0], var arr[1+1],arr[2*3] or arr [10/2]</code> are all allowed. Even other operators can also be used provided they yield to positive integer <code>arr[x++],arr[x = x -1]</code>.</p>
+<h3 id="populating-an-array"><a class="header-link" href="#populating-an-array"></a>Populating an Array</h3>
+<p>It is also possible to populate your array only on desired indexes, the rest of the places will be filled with <code>undefined</code> by default but be careful, if you fill the spaces arbitrary the rest of the spaces are not filled with <code>undefined</code> but they are holes or empty spaces which have not been defined yet.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = [];
+    arr[<span class="hljs-number">0</span>] = <span class="hljs-number">100</span>; arr[<span class="hljs-number">1</span>] = <span class="hljs-number">101</span>; arr[<span class="hljs-number">99</span>] = <span class="hljs-number">109</span>; <span class="hljs-comment">//it is  sparse array</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">0</span>]); <span class="hljs-comment">// 100</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">99</span>]); <span class="hljs-comment">// 109</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">2</span>]);  <span class="hljs-comment">// undefined</span></code></pre><h4 id="reading-and-writing-at-the-same-time"><a class="header-link" href="#reading-and-writing-at-the-same-time"></a>Reading and Writing at the same time</h4>
+<p>It is also common to assign one element of an array to another array or to itself as shown below</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr1 = [<span class="hljs-number">100</span>,<span class="hljs-number">101</span>, ,<span class="hljs-number">103</span>];
+    <span class="hljs-built_in">console</span>.log(arr1[<span class="hljs-number">2</span>]);    <span class="hljs-comment">// no element exist at this place,undefined</span>
+    <span class="hljs-comment">// assign the value form index 3 to 2 value</span>
+    arr1[<span class="hljs-number">2</span>] = arr1[<span class="hljs-number">3</span>];
+    <span class="hljs-built_in">console</span>.log(arr1);    <span class="hljs-comment">// [100,101,103,103]</span>
+    <span class="hljs-keyword">var</span> arr2 = [];
+    <span class="hljs-comment">// assign to a new arr2</span>
+    arr2[<span class="hljs-number">0</span>] = arr1[<span class="hljs-number">3</span>];
+    <span class="hljs-built_in">console</span>.log(arr2);    <span class="hljs-comment">//[103]</span></code></pre><p>JavaScript does not stop you reading or writing from an arbitrary place of your array whether that index or its value exist or not. It simply returns an undefined but it imposes a limit of (2^32-1) range, it is the maximum length which can be assigned to &quot;length&quot; property. Having said that it would also depend upon your host environment and the machine being used.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = [];
+    <span class="hljs-comment">//Reading from an arbitrary position</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">0</span>]);    <span class="hljs-comment">//undefined</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">100</span>]);    <span class="hljs-comment">//undefined</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">-1</span>]);    <span class="hljs-comment">//undefined</span>
+    <span class="hljs-built_in">console</span>.log(arr);    <span class="hljs-comment">// []</span>
+    arr[<span class="hljs-number">-1</span>] = <span class="hljs-string">"index is not possible"</span>;
+    <span class="hljs-built_in">console</span>.log(arr);<span class="hljs-comment">//['1':'index is not possible']</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">-1</span>]); <span class="hljs-comment">// index is not possible</span></code></pre><p>What is happening above requires you to understand the nature of the JavaScript behaviour. This is important to know that JavaScript array are object as well. And objects can access their property in two ways either using dot <code>(.)</code> notation and using square brackets <code>[]</code>. Thus the following code should make sense.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> obj = {};
+    obj.<span class="hljs-number">-1</span> = <span class="hljs-string">" its value"</span> ;    <span class="hljs-comment">//SyntaxError:Unexpected token</span>
+    obj.<span class="hljs-string">"-1"</span> = <span class="hljs-string">"its value "</span> ; <span class="hljs-comment">// SyntaxError:Unexpected token</span>
+    obj[<span class="hljs-number">-1</span>] = <span class="hljs-string">"its value "</span>; <span class="hljs-comment">// allowed</span>
+    obj[<span class="hljs-string">"-2"</span>] = <span class="hljs-string">"another value"</span>; <span class="hljs-comment">// allowed</span>
+    <span class="hljs-built_in">console</span>.log(obj[<span class="hljs-number">-1</span>]);    <span class="hljs-comment">// its value</span></code></pre><p>When JavaScript comes across the code <code>arr[-1]</code> or <code>arr[-1] = &quot;some value</code> what it does is to add <code>-1</code> as a property name to the array object  referenced by <code>arr</code>. If its value is not defined it will assign it <code>undefined</code> by default. Therefore it will not be wrong to say that all indexes are property names of array object. When doing so JavaScript will convert the numeric value of <code>-1</code> to string <code>&quot;-1&quot;</code>.</p>
+<blockquote>
+<p>Note:All indexes of any array are internally properties of an Array object. But JavaScript arrays only use integer indexes not string indexes or also known as named indexes. In other words they are numerical arrays [] not an associative arrays {}.</p>
+</blockquote>
+<p>If we take this point bit further, it can also be said  that a negative integer  becomes the property of an Array object instead of an indexes of an Array and are not the part of an array which was initially created.</p>
+<p>In fact the array remain same as before when it was created. Whenever an element  is added to an array a special property of an array object is updated to maintain its size. This property is known as a <code>length</code> property of an array object and plays a vital role in distinguishing array index from its property name.</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> arr = [];
+    <span class="hljs-comment">// All expression below creates a property on array object</span>
+    arr[<span class="hljs-number">-1</span>] = <span class="hljs-number">100</span>;
+    arr[<span class="hljs-number">-2</span>] = <span class="hljs-number">200</span>;
+    arr[<span class="hljs-number">-3</span>] = <span class="hljs-number">300</span>;
+    <span class="hljs-comment">//check the array object arr</span>
+    <span class="hljs-built_in">console</span>.log(arr); <span class="hljs-comment">//[ '-1': 100, '-2': 200, '-3': 300 ]</span>
+    <span class="hljs-comment">//get the value at index 0 of arr</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">0</span>]);    <span class="hljs-comment">//undefined</span>
+    <span class="hljs-comment">//check if it is an array</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>.isArray(arr)); <span class="hljs-comment">//true</span>
+    <span class="hljs-comment">//what is the length of the array arr</span>
+    <span class="hljs-built_in">console</span>.log(arr.length); <span class="hljs-comment">// 0</span>
+    <span class="hljs-comment">//Now access the property of array object using square bracket</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">-1</span>]); <span class="hljs-comment">//100</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-string">"-2"</span>]); <span class="hljs-comment">//200</span>
+    <span class="hljs-built_in">console</span>.log(arr[<span class="hljs-number">-3</span>]); <span class="hljs-comment">//300</span></code></pre><p>From the above it is clear that a negative integer creates a property on the object and not its index, but what about a floating point number that evaluates to an non negative integer or a string of a numeric value. The code below explains this situation.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = [];
+    arr[<span class="hljs-number">-1</span>] = <span class="hljs-number">20</span>; <span class="hljs-comment">// will create a property and attach it to the arr object</span>
+    arr[<span class="hljs-string">"2"</span>] = <span class="hljs-literal">null</span>;    <span class="hljs-comment">// [ , ,null]: string is changed to numeric value</span>
+    arr[<span class="hljs-number">1.00</span>] = <span class="hljs-string">"A"</span>;    <span class="hljs-comment">//[ ,'A']: 1.00 = 1, treated as numeric value</span></code></pre><p>By creating a property on array object does not create an element in an array nor it effects the length property.</p>
+<h3 id="array-length-property"><a class="header-link" href="#array-length-property"></a>Array <code>length</code> property</h3>
+<p>It is clear from the above code that this property is maintained internally and is updated only when an element is added to an array .</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr1 = [];
+    <span class="hljs-keyword">var</span> arr2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">var</span> arr3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+        <span class="hljs-comment">//check if length is a property of an array object</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"length"</span> <span class="hljs-keyword">in</span> arr1);<span class="hljs-comment">//true. property of Array object</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"toSring"</span> <span class="hljs-keyword">in</span> arr2); <span class="hljs-comment">// true. inherited from Object</span>
+
+    <span class="hljs-built_in">console</span>.log(arr1.length); <span class="hljs-comment">// 0</span>
+    <span class="hljs-built_in">console</span>.log(arr2.length); <span class="hljs-comment">// 0</span>
+    <span class="hljs-built_in">console</span>.log(arr3.length); <span class="hljs-comment">// 0 or</span>
+    <span class="hljs-built_in">console</span>.log([].length); <span class="hljs-comment">//0</span>
+    <span class="hljs-built_in">console</span>.log([<span class="hljs-number">1</span>,<span class="hljs-string">"hello"</span>].length); <span class="hljs-comment">// highest index is 1, the length is 2</span></code></pre><p>The value of length property is always greater than one of its highest index if the array is dense as shown in last line of the above example. The <code>length</code> property can be used to shorten the array or delete it all or may be set to the higher length as explained below. To delete the individual property in an array <code>delete</code> operator can also be used provided the  writable attribute of the property is not set to false,  but the <code>delete</code> operator only deletes the property value not its index.</p>
+<h4 id="shortening-the-array"><a class="header-link" href="#shortening-the-array"></a>Shortening the array</h4>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">10</span>,<span class="hljs-number">100</span>,<span class="hljs-number">100</span>,<span class="hljs-number">10000</span>]; <span class="hljs-comment">// 4 elements are set</span>
+    <span class="hljs-built_in">console</span>.log(arr.length); <span class="hljs-comment">// 4</span>
+    arr.length = <span class="hljs-number">0</span>; <span class="hljs-comment">// all elements are deleted</span>
+    <span class="hljs-built_in">console</span>.log(arr.length); <span class="hljs-comment">//0</span>
+    <span class="hljs-built_in">console</span>.log(arr); <span class="hljs-comment">// []</span>
+    arr.push(<span class="hljs-number">9</span>,<span class="hljs-number">99</span>,<span class="hljs-number">999</span>,<span class="hljs-number">9999</span>,<span class="hljs-number">99999</span>); <span class="hljs-comment">//populate array again using push method</span>
+    <span class="hljs-built_in">console</span>.log(arr); [ <span class="hljs-number">9</span>, <span class="hljs-number">99</span>, <span class="hljs-number">999</span>, <span class="hljs-number">9999</span>, <span class="hljs-number">99999</span> ]
+    arr.length = <span class="hljs-number">4</span>; <span class="hljs-comment">// length is shortened by 1 from the top</span>
+    <span class="hljs-built_in">console</span>.log(arr);[ <span class="hljs-number">9</span>, <span class="hljs-number">99</span>, <span class="hljs-number">999</span>, <span class="hljs-number">9999</span> ]
+    arr.length = <span class="hljs-number">10</span>; <span class="hljs-comment">// length is set to more than elements defined</span>
+    <span class="hljs-built_in">console</span>.log(arr);<span class="hljs-comment">//[ 9, 99, 999, 9999, , , , , ,  ]</span>
+    <span class="hljs-keyword">delete</span> arr[<span class="hljs-number">2</span>]; <span class="hljs-comment">// delete the value at index 2</span>
+    <span class="hljs-built_in">console</span>.log(arr);[ <span class="hljs-number">9</span>, <span class="hljs-number">99</span>, , <span class="hljs-number">9999</span>, , , , , ,  ] only value is deleted</code></pre><h3 id="setting-the-size-of-an-array-explicitly"><a class="header-link" href="#setting-the-size-of-an-array-explicitly"></a>Setting the size of an Array explicitly</h3>
+<p>JavaScript arrays are dynamic. They expand and contract automatically so there is no need to bother about it, but it does not stop you to define its initial size. Therefore it is also possible to create an array with a fixed size explicitly at the time of its creation using either a literal or Array constructor. When using  array literal, it is the programmer responsibility to get the whole job done properly.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">10</span>);    <span class="hljs-comment">// array size is provided</span>
+    <span class="hljs-built_in">console</span>.log(arr1); <span class="hljs-comment">// [ , , , , , , , , ,  ]</span>
+    <span class="hljs-built_in">console</span>.log(arr1.length); <span class="hljs-comment">//10</span>
+    <span class="hljs-built_in">console</span>.log(arr1[<span class="hljs-number">0</span>]); <span class="hljs-comment">// undefined</span>
+    <span class="hljs-comment">// setting the size using array literal</span>
+    <span class="hljs-keyword">var</span> arr2 = [];
+    arr2[<span class="hljs-number">9</span>] = <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// a technique to assign size</span>
+    <span class="hljs-built_in">console</span>.log(arr2); <span class="hljs-comment">//[ , , , , , , , , , undefined ]</span>
+    <span class="hljs-built_in">console</span>.log(arr2.length); <span class="hljs-comment">//10</span>
+    <span class="hljs-built_in">console</span>.log(arr2[<span class="hljs-number">0</span>]); <span class="hljs-comment">// undefined</span></code></pre><p>Though the above two ways seem to be doing more or less same job but the second way is just an un necessary effort to do what is done simply and seamlessly. The only thing you have to be careful when using the Array constructor that the constructor takes only one  numeric value otherwise the result will be different. Thus <code>new Array(&quot;10&quot;)</code> will not create an array of length 10 but an array of length 1 whose value is 10. Therefore if you really want to create an initial size of an array and populate it with some value,the safest way is to do it yourself .</p>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">denseArray</span>(<span class="hljs-params">arr</span>)</span>{
+            <span class="hljs-keyword">var</span> result = [];
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i&lt;arr.length    ; i++){
+            result[i] = arr[i];
+        }
+        <span class="hljs-keyword">return</span> result;
+    }
+    <span class="hljs-built_in">console</span>.log(denseArray([<span class="hljs-number">1</span>, ,<span class="hljs-number">2</span>])); <span class="hljs-comment">// [[1,undefined,2]]</span></code></pre><blockquote>
+<p>Note:When you create an array with empty holes in it by any means you are creating sparse arrays. In this case you should know how to deal with it. Thus the length of your array will be greater than the elements you have inside an array. It is better to have a dense array then creating a sparse array</p>
+</blockquote>
+<h3 id="creating-dense-array-with-the-specified-size-using-built-in-function-"><a class="header-link" href="#creating-dense-array-with-the-specified-size-using-built-in-function-"></a>Creating dense array with the specified size using built in function.</h3>
+<p>If you are creating an array with an initial size set to some numeric value then it becomes your responsibility to fill it with some value . Following are different ways to use built in function.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Array</span>.apply(<span class="hljs-literal">null</span>,<span class="hljs-built_in">Array</span>(<span class="hljs-number">3</span>));
+    <span class="hljs-built_in">console</span>.log(arr); <span class="hljs-comment">// [undefined,undefined,undefined];</span></code></pre><h3 id="different-ways-of-finding-the-key-property-in-object"><a class="header-link" href="#different-ways-of-finding-the-key-property-in-object"></a>Different ways of finding the key/property in object</h3>
+<p>There are different ways to find out if the key or its value is present in an array or not either using built in functions or use your own.</p>
+<h3 id="1-using-in-and-operator-with-arrays"><a class="header-link" href="#1-using-in-and-operator-with-arrays"></a>1. Using <code>in</code> and  operator with Arrays</h3>
+<p>The <code>in</code> operator  can also be used to see if the property exist in the object. Since Array is also an object it can be applied to when queering use key or the property as string not as numeric value.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span>  arr1 = [];
+    <span class="hljs-comment">// property must be a string</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">0</span> <span class="hljs-keyword">in</span> arr1); <span class="hljs-comment">// false. But wrong way</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"0"</span> <span class="hljs-keyword">in</span> arr1); <span class="hljs-comment">// false. correct way</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"0"</span> <span class="hljs-keyword">in</span> [ , ,<span class="hljs-number">20</span>]); <span class="hljs-comment">// false</span>
+    <span class="hljs-built_in">console</span>.log([<span class="hljs-number">10</span>,<span class="hljs-number">20</span>, ,] <span class="hljs-keyword">in</span> [<span class="hljs-number">2</span>]); <span class="hljs-comment">//false</span>
+
+    <span class="hljs-keyword">var</span> arr3 = [, ,<span class="hljs-number">1234</span>];
+    <span class="hljs-built_in">console</span>.log(!(<span class="hljs-string">"0"</span> <span class="hljs-keyword">in</span> arr3)); <span class="hljs-comment">// true. index 0 is not set</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"2"</span> <span class="hljs-keyword">in</span> arr3); <span class="hljs-comment">//true. index 2 exist</span>
+
+    <span class="hljs-keyword">var</span> arr4 = [<span class="hljs-literal">undefined</span>,<span class="hljs-literal">undefined</span>];
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"0"</span> <span class="hljs-keyword">in</span> arr4);    <span class="hljs-comment">// true. index 0 exist</span>
+    <span class="hljs-keyword">delete</span> arr4[<span class="hljs-number">0</span>];
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"0"</span> <span class="hljs-keyword">in</span> arr4); <span class="hljs-comment">// false. it has been deleted</span></code></pre><h3 id="2-accessing-it-with-object"><a class="header-link" href="#2-accessing-it-with-object"></a>2. Accessing it with object</h3>
+<p>The simplest way to access any property of the object to access it using an instance of the object with the help of dot (.) notation or square brackets []. as shown below. But the million dollar question is that where is the key in sparse array?. In sparse array, there lies holes and no indexes are present. The correct way is to use built in function <code>hasownProperty()</code>.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr1 = [ , ];
+    <span class="hljs-comment">// console.log(arr1.?) what to use here ! There is a hole</span>
+    <span class="hljs-built_in">console</span>.log([ , ][<span class="hljs-number">0</span>]); <span class="hljs-comment">// undefined, same as below</span>
+    <span class="hljs-built_in">console</span>.log(arr1[<span class="hljs-number">0</span>]);<span class="hljs-comment">// undefined.  we are looking for a key not value</span>
+    <span class="hljs-comment">// correct way</span>
+    <span class="hljs-built_in">console</span>.log(arr1.hasOwnProperty(<span class="hljs-string">"0"</span>)); <span class="hljs-comment">// false</span></code></pre><h3 id="iterating-arrays"><a class="header-link" href="#iterating-arrays"></a>Iterating Arrays</h3>
+<p>Since they are objects they can also be iterated in a same way as done for any other instances of Objects using built in <code>for...in</code> loop or provide your own or use <code>for...of</code> method which looks for object not a property.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">10</span>,<span class="hljs-number">100</span>,<span class="hljs-number">100</span>,<span class="hljs-number">10000</span>]; <span class="hljs-comment">// 4 elements are set</span>
+    <span class="hljs-built_in">console</span>.log(arr.length); <span class="hljs-comment">// 4</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i&lt;arr.length; i++) {
+        <span class="hljs-built_in">console</span>.log(arr[i]);
+    }
+        <span class="hljs-comment">// or use the built in  for...in (it looks for property)</span>
+    <span class="hljs-keyword">for</span>( <span class="hljs-keyword">var</span> prop <span class="hljs-keyword">in</span> arr){
+        <span class="hljs-built_in">console</span>.log(arr[prop]);
+    }
+        <span class="hljs-comment">// or use the built in  for...of ( it looks for object)</span>
+    <span class="hljs-keyword">for</span>( <span class="hljs-keyword">var</span> name <span class="hljs-keyword">of</span> arr){
+        <span class="hljs-built_in">console</span>.log(name);
+    }</code></pre><p>How you iterate depends what are you looking for in the array. If interested in particular value in the array you may use <code>indexOf()</code> or <code>lastIndexOf()</code>function which returns the index number against the value found, if successful. Otherwise it will return -1.</p>
+<h4 id="looking-for-a-particular-property"><a class="header-link" href="#looking-for-a-particular-property"></a>Looking for a particular property</h4>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">find</span>(<span class="hljs-params">arr</span>)</span>{
+        <span class="hljs-keyword">var</span> index = arr.indexOf(<span class="hljs-string">"98"</span>);
+        <span class="hljs-keyword">if</span> ( index != <span class="hljs-number">-1</span>) {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"it is present at index "</span> + index);
+        }<span class="hljs-keyword">else</span>{
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"it is not present"</span>);
+        }
+    }
+    find([<span class="hljs-number">12</span>,<span class="hljs-string">"he"</span>,<span class="hljs-string">"98"</span>, ,<span class="hljs-number">10</span>]);</code></pre><h2 id="purpose-of-array"><a class="header-link" href="#purpose-of-array"></a>Purpose of Array</h2>
+<p>Having more than one items organized in an array object is to somehow use them one by one against some function. To full fill this purpose JS provides <code>forEach()</code> method.</p>
+<h3 id="foreach-array-prototype-foreach-callback-thisarg-"><a class="header-link" href="#foreach-array-prototype-foreach-callback-thisarg-"></a>forEach() [ Array.prototype.forEach(callback,thisArg)]</h3>
+<p>The reason to have this function in Array class is that most of the time when working with an array object containing elements, any specific  job is to be performed on each element one by one. So rather than invoking a same function  different times with passing individual items to the function one by one, a helper method can be provided which can be invoked upon an array object and at the same time passing a target function as an argument to the helper function. e.g., <code>[10,20,30].forEach(printThem)</code> Here <code>forEach()</code> is a helper function which can be invoked on any array object whereas the target function is passed as an argument. Therefore <code>forEach()</code> job is to call this target function on each element of the array object. Since the job of this function to call the target function time and time again, it is called a callback function. Therefore any helper function which is supposed to call a particular function on any given object or on any given arguments is very helpful. So a bare bone structure would be</p>
+<pre class="hljs"><code>    <span class="hljs-comment">//helper function</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myHelper</span>(<span class="hljs-params">callback,thisArg</span>)</span>{
+        <span class="hljs-comment">/* from here the given function is invoked indirectly using call or apply providing it the right execution context */</span>
+        <span class="hljs-keyword">var</span> thisPointer = thisArg;
+        callback.call(thisPointer,arg1,arg2,arg3......); <span class="hljs-comment">// or</span>
+        callback. apply(thisPointer,arg[]);
+    }</code></pre><p>Let&#39;s see how <code>forEach()</code> method is called.</p>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printIt</span>(<span class="hljs-params">elements</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Array elements are: "</span> + elements);
+    }
+    <span class="hljs-comment">/* instead of invoking
+        printIt(100);,printIt(20);....... this helper function can be used
+    */</span>
+    [<span class="hljs-number">100</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">40</span>,<span class="hljs-number">88</span>].forEach(printIt);
+    <span class="hljs-comment">/* There is no need to define it separately it can be defined at the same time */</span>
+    [<span class="hljs-number">100</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">40</span>,<span class="hljs-number">88</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">elements</span>)</span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"++"</span> + elements + <span class="hljs-string">"++"</span>);
+    });</code></pre><p>What actions are to be performed and how to be performed are left on the user.  The arguments which are passed to callback function is not limited to elements, the second arguments can be passed as an index of an array and third one can be the array that is to be traversed. Let&#39;s see if we were writing such a helper function how would it be written.</p>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">forEachx</span>(<span class="hljs-params">fun ,thisArg</span>)</span>{
+        <span class="hljs-keyword">var</span> len = thisArg.length;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> fun != <span class="hljs-string">"function"</span>)
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>();
+
+            <span class="hljs-keyword">var</span> thisp = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]; <span class="hljs-comment">//</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
+            <span class="hljs-keyword">if</span> (i <span class="hljs-keyword">in</span> thisArg)
+            fun.call(thisp,thisArg[i],i,thisArg);<span class="hljs-comment">// passing three args</span>
+        }
+    }
+        <span class="hljs-comment">// A helper function which call the callback with given array items</span>
+    forEachx(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">elem,index,array</span>)</span>{
+        <span class="hljs-built_in">console</span>.log(elem);
+        <span class="hljs-built_in">console</span>.log(index);
+        <span class="hljs-built_in">console</span>.log(array);
+    },[<span class="hljs-number">11</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>]);</code></pre><h3 id="map-array-prototype-map-"><a class="header-link" href="#map-array-prototype-map-"></a>map() [ Array.prototype.map()]</h3>
+<p>To understand the map function let&#39;s see an example of the function which doubles the given number in an array object</p>
+<pre class="hljs"><code>    [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">elem</span>)</span>{
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"the double of "</span> + elem + <span class="hljs-string">"  is "</span> + elem * <span class="hljs-number">2</span>);
+        });
+    <span class="hljs-comment">// The above does the job pretty good, now use the map function</span>
+    <span class="hljs-keyword">var</span> doubleNumber = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>].map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">elem</span>)</span>{
+        <span class="hljs-keyword">return</span> elem * <span class="hljs-number">2</span>;
+        });
+    <span class="hljs-built_in">console</span>.log(doubleNumber); <span class="hljs-comment">// [2,4,6,8,10]</span></code></pre><p>Both are seem to be doing the same job except the map function requires you to return the result and it stored in array object mapped to the original one exactly at the same position. When working with <code>Array.prototype.map()</code> method, following rules apply;</p>
+<ol class="list">
+<li>Every output element corresponds to the input elements in the same position and shuffling is not allowed</li>
+<li>Callback function should not change the original object. Make a copy and work with it. Similarly action that causes side effects to the working environment is not prohibited.</li>
+</ol>
+<h4 id="when-to-use-map-function"><a class="header-link" href="#when-to-use-map-function"></a>When to use map() function</h4>
+<p>Map function job is to provide mapping b/w two items of given array according to the criteria set by the programmer. For example an array containing three items when mapped using the criteria of doubling. The new array will be as shown. To display the result in pair</p>
+<pre class="hljs"><code>   <span class="hljs-number">1</span> ---------------&gt; <span class="hljs-number">2</span>
+   <span class="hljs-number">4</span> ---------------&gt; <span class="hljs-number">8</span>
+   <span class="hljs-number">5</span> ---------------&gt; <span class="hljs-number">25</span></code></pre><h4 id="important-functions-in-array"><a class="header-link" href="#important-functions-in-array"></a>Important functions in Array</h4>
+<p>In early day of programming the language never provided the built in helper functions. It was the programmer job to write the function every time as and when needed which led to the question of re writing the same code time and time again. Modern days language provide most commonly used function in one way or the another to be used. JavaScript is not different, Whenever an object of array is created it inherits properties from the <strong>Array.prototype</strong> object. These properties include method that provide commonly used functions to be used by the user. These method are well written and do the job perfectly provided one should know how to use them. Let&#39;s see what is present to share:</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = [];
+    <span class="hljs-keyword">var</span> arrProto = <span class="hljs-built_in">Object</span>.getPrototypeOf(arr);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-built_in">Object</span>.getOwnPropertyNames(arrProto)));
+    <span class="hljs-comment">/*["length","constructor","toString","toLocaleString","join","pop","push","concat","reverse","shift","unshift","slice","splice","sort","filter","forEach","some","every","map","indexOf","lastIndexOf","reduce","reduceRight","entries","keys","copyWithin","find","findIndex","fill"]
+     */</span></code></pre><p>The above methods and properties are called Array&#39;s API which is used to solve the problems without re writing the code. For example to separate even numbers from the odd one in a given array. You may write your own function or use the provided one.</p>
+<p>Here comes the power of functional programming. You don&#39;t need to programme how to do it but you need to learn how given API can be used to solve the problem. If a problem is not solved by one functions then feed the result of one function into next function and keep doing it by building the chain of methods until the problem is solved. This whole scenario is to utilize the power of given API and chaining them. When using these APIs and chaining them together what is to be provided is the <strong>logic</strong> to solve the issue in hand. There may be present more than one way to solve the problem. And they all be the correct ways. It is the programmer responsibility to keep the balance among readability , optimization and performance.</p>
+<h4 id="separating-evens-from-odds"><a class="header-link" href="#separating-evens-from-odds"></a>Separating evens from odds</h4>
+<blockquote>
+<p>Use the logic of <code>Remainder</code>,that is divide a number from  2 if the remainder is 0 the number is even otherwise odd. In JS the symbol &quot;%&quot; is used to achieve the result.</p>
+<p><strong>Method</strong>: The conventional method would be to have the input in form of array object. And  get the answers stored in two different arrays leaving the original one intact.</p>
+</blockquote>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> evens = [];
+    <span class="hljs-keyword">var</span> odds = [];
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">EvensAndOdds</span>(<span class="hljs-params">array</span>)</span>{
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> index = <span class="hljs-number">0</span>; index &lt; array.length; index++){
+                (array[index] % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) ? evens.push(array[index]) : odds.push(array[index]);
+            }
+        }
+    EvensAndOdds([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">5</span>]);
+    <span class="hljs-built_in">console</span>.log(evens); <span class="hljs-comment">// [ 2, 4, 6, 6, 8 ]</span>
+    <span class="hljs-built_in">console</span>.log(odds); <span class="hljs-comment">// [ 1, 3, 5, 7, 5 ]</span></code></pre><p>To avoid global variables, programme can be written whith simple change.</p>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">EvensAndOdds</span>(<span class="hljs-params">array</span>)</span>{
+    <span class="hljs-keyword">var</span> evens = [];
+    <span class="hljs-keyword">var</span> odds = [];
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> index = <span class="hljs-number">0</span>; index &lt; array.length; index++){
+            (array[index] % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) ? evens.push(array[index]) : odds.push(array[index]);
+        }
+        <span class="hljs-built_in">console</span>.log(evens);
+        <span class="hljs-built_in">console</span>.log(odds);
+    }
+    EvensAndOdds([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">5</span>]);</code></pre><p>To get the result returned, a <code>return</code> statement can be used. How to return the result depends upon you. JS allows you to return a primitive type as well as object and even a function can be returned. Thus to return even number <code>return evens</code> and to add odd numbers <code>return odds</code> would be sufficient. If both needs to be returned they can be made a part of an object which can be returned safely. Similarly declaring two local arrays evens and odds can be avoided by changing the signature of function <code>function EvensAndOdds(array,evens,odds){..return...}</code> thus passing the array literals when invoking the functions.</p>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">EvensAndOdds</span>(<span class="hljs-params">array,evens,odds</span>)</span>{
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> index = <span class="hljs-number">0</span>; index &lt; array.length; index++){
+            (array[index] % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) ? evens.push(array[index]) : odds.push(array[index]);
+        }
+        <span class="hljs-comment">//returning an object</span>
+    <span class="hljs-keyword">return</span> {
+                getEvens: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> evens},
+                getOdds: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">return</span> odds}
+            };
+}<span class="hljs-comment">// End of EvensAndOdds</span>
+    <span class="hljs-keyword">var</span> result = EvensAndOdds([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">5</span>],[],[]);
+    <span class="hljs-built_in">console</span>.log(result.getEvens());
+    <span class="hljs-built_in">console</span>.log(result.getOdds());</code></pre><p>The above process can be done using array class provided methods, these methods are there providing the mechanism which a programmer may need to complete any task. Functions like <code>filter()</code> job is to provide you the opportunity to filter  the given array by applying a certain conditions. The result  is achieved by giving the user opportunity to write his own implementation in the form of callback functions as shown below.</p>
+<h2 id="built-in-array-class-methods-"><a class="header-link" href="#built-in-array-class-methods-"></a>Built-in Array Class methods.</h2>
+<h3 id="filter-array-prototype-filter-"><a class="header-link" href="#filter-array-prototype-filter-"></a>filter() [ Array.prototype.filter()]</h3>
+<p>If an array requires some sort of operation to choose the right items before applying to map use <code>filter()</code> method.  Note the <code>filter()</code> method returns the boolean value <code>true</code> for yes and <code>false</code> for no. If the return value is true the result will be an array of filtered value. Applying filter and then map can be done on any level or any number of times. This is regarded chaining of functions. Let&#39;s see the example of <code>filter()</code> method</p>
+<pre class="hljs"><code>    <span class="hljs-comment">// callback function.</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">value</span>)</span>{
+        <span class="hljs-keyword">return</span> (value % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) <span class="hljs-comment">// only even number passes this conditions</span>
+    }
+    <span class="hljs-keyword">var</span> evenNumbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">99</span>].filter(isEven);
+    <span class="hljs-built_in">console</span>.log(oddNumbers); <span class="hljs-comment">// [ 2, 4, 6, 6, 8 ]</span></code></pre><p>Similarly one can use the same function <code>filter()</code> providing a different callback function and getting the required result.</p>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isOdd</span>(<span class="hljs-params">value</span>)</span>{
+        <span class="hljs-keyword">return</span> (value % <span class="hljs-number">2</span> !== <span class="hljs-number">0</span>) <span class="hljs-comment">// false</span>
+            }
+    <span class="hljs-keyword">var</span> oddNumbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">99</span>].filter(isOdd);
+    <span class="hljs-built_in">console</span>.log(oddNumbers); <span class="hljs-comment">// [ 1, 3, 5, 7, 9, 99 ]</span></code></pre><blockquote>
+<p>In order to take the advantage of full potential of a callback function, one must know how many arguments and what arguments can be passed to a callback function when writing the implementation.</p>
+</blockquote>
+<p>For example in above two callback functions only one argument is used. When looking  at the API of <code>filter(callback,thisArg)</code> method. It tells that callback function can take three arguments, in fact most Array class API take three arguments to provide the opportunity to writhe the implementation of the callback functions. Number one being the element second is the index and third is array to be passed so the programmer can manipulate them easily.</p>
+<h4 id="use-of-reduce-"><a class="header-link" href="#use-of-reduce-"></a>Use of reduce()</h4>
+<p>This function job is to reduce the array by applying elements to a  given callback function and return the first argument which is known as the accumulator. This first argument can be the first value of an array or the value provided. The  difference b/w <code>filter()</code> and this fucniton is that this callback takes four arguments</p>
+<ol class="list">
+<li><code>accumulator</code>: This argument stores the value which comes from applying the function to array element. This is an accumulated value and can be set to any initial value as well. this is the value which is returned as well</li>
+<li><code>currentValue</code>: This is the current element being processed</li>
+<li><code>currentIndex</code>: The index of the current element of the array starts at index 0 as usual but if the <code>initialValue</code> is provided otherwise at index 1.</li>
+<li><code>initialValue</code>: Optional value to use as the first argument to the first call of the callback</li>
+</ol>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxNumber</span>(<span class="hljs-params">previous,current</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(previous,current);
+    }
+    <span class="hljs-built_in">console</span>.log([<span class="hljs-number">1000</span>,<span class="hljs-number">20</span>,<span class="hljs-number">2000</span>,<span class="hljs-number">33</span>,<span class="hljs-number">23</span>].reduce(maxNumber));</code></pre><p>The first time the callback is called, accumulator and currentValue can be one of two values. If no initialValue was provided, then accumulator will be equal to the first value in the array and currentValue will be equal to the second.
+Note: If initialValue isn&#39;t provided, reduce will execute the callback function starting at index 1, skipping the first index. If initialValue is provided, it will start at index 0. If the array is empty and no initialValue was provided, TypeError would be thrown. If the array has only one element (regardless of position) and no initialValue was provided, or if initialValue is provided but the array is empty, the solo value would be returned without calling callback.</p>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxNumber</span>(<span class="hljs-params">previous,current,index,array</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">" previous is "</span> + previous);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">" current is "</span> + current);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">" index is "</span> + index);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">" array is "</span> + array + <span class="hljs-string">" next---&gt;"</span>);
+    }
+    <span class="hljs-built_in">console</span>.log([<span class="hljs-number">1000</span>,<span class="hljs-number">20</span>,<span class="hljs-number">2000</span>,].reduce(maxNumber));
+    <span class="hljs-comment">/*previous is 1000 current is 20 index is 1 array is 1000,20,2000 next---&gt;
+       previous is undefined, current is 2000, index is 2, array is 1000,20,2000 next---&gt;
+     */</span></code></pre><p> If initialValue is provided in the call to reduce, then accumulator will be equal to initialValue and currentValue will be equal to the first value in the array.</p>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxNumber</span>(<span class="hljs-params">previous,current,index,array</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">" previous is "</span> + previous);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">" current is "</span> + current);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">" index is "</span> + index);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">" array is "</span> + array <span class="hljs-string">" next---&gt;"</span>);
+}
+    <span class="hljs-built_in">console</span>.log([<span class="hljs-number">1000</span>,<span class="hljs-number">20</span>,<span class="hljs-number">2000</span>,].reduce(maxNumber,{}));
+    <span class="hljs-comment">/* previous is [object Object] current is 1000 index is 0 array is 1000,20,2000 next---&gt; previous is undefined current is 20 index is 1
+     array is 1000,20,2000
+      */</span></code></pre><h3 id="finding-out-the-frequency-of-value-being-repeated-in-an-array-and-mapped-it-with-the-value-"><a class="header-link" href="#finding-out-the-frequency-of-value-being-repeated-in-an-array-and-mapped-it-with-the-value-"></a>Finding out the frequency of value being repeated in an array and mapped it with the value.</h3>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxNumber</span>(<span class="hljs-params">accumulator,current,index,array</span>) </span>{
+        accumulator[current] = (accumulator[current] || <span class="hljs-number">0</span> ) + <span class="hljs-number">1</span>;
+        <span class="hljs-comment">//console.log(accumulator);</span>
+        <span class="hljs-keyword">return</span> accumulator;
+    }
+    <span class="hljs-built_in">console</span>.log([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>].reduce(maxNumber,{}));
+    <span class="hljs-comment">//{ '1': 2, '2': 2, '3': 1 }</span>
+    <span class="hljs-comment">/*
+    The technique is to check the object with next number in an array as its property ` accumulator[current]` represents the property of the object. First time, it yields to undefined but since orred (||ed)with 0 gives 0 when is added to 1 and becomes `accumulator['1'] = 1;` The first property happened to be 1, it could be anything. When it returned, a key and its value was returned in an object. The next time if the same key is repeated that is '1' it will yield to 1 because it has already come and added to 1 becomes 2,thus updating its value and so on. When we look at the code , it looks as if we are dealing with array object but it is not the array object but it is the object whose property is being added by using the index operator []. Since the code `accumulator.current` is not sufficient to evaluate the current variable `accumulator[current]` is used instead.
+     */</span></code></pre><p>The same technique can be applied to other values as well</p>
+<pre class="hljs"><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxNumber</span>(<span class="hljs-params">accumulator,current,index,array</span>) </span>{
+    accumulator[current] = (accumulator[current] || <span class="hljs-number">0</span> ) + <span class="hljs-number">1</span>;
+    <span class="hljs-comment">//console.log(accumulator);</span>
+    <span class="hljs-keyword">return</span> accumulator;
+}
+<span class="hljs-built_in">console</span>.log([<span class="hljs-literal">true</span>,<span class="hljs-number">1</span>,<span class="hljs-string">"abc"</span>,<span class="hljs-literal">false</span>,<span class="hljs-number">20</span>,<span class="hljs-string">"bcd"</span>,<span class="hljs-literal">false</span>,<span class="hljs-string">"abc"</span>].reduce(maxNumber,{}));
+    <span class="hljs-comment">//{ '1': 1, '20': 1, true: 2, abc: 2, false: 2, bcd: 1 }</span></code></pre><p>If <code>reduce()</code> is not used then same result can be achieved using another call back function providing the accumulator object.</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> arr = [<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>,<span class="hljs-string">'d'</span>,<span class="hljs-string">'e'</span>,<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'f'</span>,<span class="hljs-string">'g'</span>,<span class="hljs-string">'h'</span>,<span class="hljs-string">'h'</span>,<span class="hljs-string">'h'</span>,<span class="hljs-string">'e'</span>,<span class="hljs-string">'a'</span>];
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">frequency</span>(<span class="hljs-params">arr,acc</span>)</span>{
+        arr.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">element</span>)</span>{
+                    <span class="hljs-comment">// no need to use loop as it is called back on each element</span>
+                    acc[element] = (acc[element] || <span class="hljs-number">0</span> ) + <span class="hljs-number">1</span>;
+          });
+      <span class="hljs-keyword">return</span> acc;
+    }
+    <span class="hljs-built_in">console</span>.log(frequency(arr,{}));<span class="hljs-comment">//</span>
+    <span class="hljs-comment">// or</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">frequency</span>(<span class="hljs-params">arr</span>)</span>{
+        <span class="hljs-keyword">var</span> obj = {};
+        arr.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">element</span>)</span>{
+            obj[element] = ( obj[element] || <span class="hljs-number">0</span> ) + <span class="hljs-number">1</span>;
+            });
+            <span class="hljs-keyword">return</span> obj;
+    }
+    <span class="hljs-built_in">console</span>.log(frequency(arr))</code></pre><p>To achieve the same result, call and apply functions can be used by providing the context object as an accumulator.</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> arr = [<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>,<span class="hljs-string">'d'</span>,<span class="hljs-string">'e'</span>,<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'f'</span>,<span class="hljs-string">'g'</span>,<span class="hljs-string">'h'</span>,<span class="hljs-string">'h'</span>,<span class="hljs-string">'h'</span>,<span class="hljs-string">'e'</span>,<span class="hljs-string">'a'</span>];
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">frequency</span>(<span class="hljs-params">arr</span>)</span>{
+        <span class="hljs-keyword">var</span> thisp = <span class="hljs-keyword">this</span>;
+        arr.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">element</span>)</span>{
+            thisp[element] = ( thisp[element] || <span class="hljs-number">0</span> ) + <span class="hljs-number">1</span>;
+            });
+            <span class="hljs-keyword">return</span> thisp;
+    }
+    <span class="hljs-built_in">console</span>.log(frequency.call({},arr));</code></pre><h3 id="chaining-methods"><a class="header-link" href="#chaining-methods"></a>Chaining methods</h3>
+<p>The following example shows how to apply two methods together to find out the highest odd number from the array.</p>
+<pre class="hljs"><code>    <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">100</span>, <span class="hljs-number">9</span>, <span class="hljs-number">87</span>, <span class="hljs-number">456</span>, <span class="hljs-number">33</span>, <span class="hljs-number">45</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">11</span>, <span class="hljs-number">22</span>,<span class="hljs-number">87</span>,<span class="hljs-number">33</span>, <span class="hljs-number">45</span>];
+    <span class="hljs-built_in">console</span>.log(arr.filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">elements</span>) </span>{
+            <span class="hljs-keyword">return</span> (elements % <span class="hljs-number">2</span> !== <span class="hljs-number">0</span>);
+            }).reduce(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">prev, curr</span>) </span>{
+                <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(prev, curr);
+        }));
+        <span class="hljs-comment">//87</span></code></pre>      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+</body>
+</html>
